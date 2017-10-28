@@ -1,6 +1,7 @@
 package nitrodragon.render;
 
 import org.joml.Matrix4f;
+import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
 
 import java.io.BufferedReader;
@@ -61,6 +62,12 @@ public class Shader {
             glUniform1i(location, value);
     }
 
+    public void setUniform(String name, Vector3f value) {
+        int location = glGetUniformLocation(program, name);
+        if (location != -1)
+            glUniform3f(location, value.x, value.y, value.z);
+    }
+
     protected void finalize() {
         glDetachShader(program, vs);
         glDetachShader(program, fs);
@@ -86,8 +93,8 @@ public class Shader {
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader br;
         try {
-            URI filePath = getClass().getResource("/shaders/" + filename).toURI();
-            br = new BufferedReader(new FileReader(new File(filePath)));
+            String toRead = System.getProperty("user.dir") + "/tstiles/src/main/resources" + "/shaders/" + filename;
+            br = new BufferedReader(new FileReader(new File(toRead)));
             String line;
             while ((line = br.readLine()) != null) {
                 stringBuilder.append(line);
@@ -95,7 +102,7 @@ public class Shader {
             }
             br.close();
         }
-        catch (IOException | URISyntaxException e) {
+        catch (IOException e) {
             e.printStackTrace();
         }
         return stringBuilder.toString();

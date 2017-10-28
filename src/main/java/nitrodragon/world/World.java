@@ -31,7 +31,8 @@ public class World {
 
         public World(String world) {
             try {
-                BufferedImage tile_sheet = ImageIO.read(new File("levels/" + world + "/tiles.png"));
+                String toRead = System.getProperty("user.dir") + "/tstiles/levels/" + world + "/tiles.png";
+                BufferedImage tile_sheet = ImageIO.read(new File(toRead));
 
                 width = tile_sheet.getWidth();
                 height = tile_sheet.getHeight();

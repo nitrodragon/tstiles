@@ -12,21 +12,19 @@ import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
-import static org.lwjgl.glfw.GLFW.*;
-
 public abstract class Entity {
     private static Model model;
     protected AABB hitbox;
     //private Texture texture;
     protected Animation[] animations;
     private int use_animation;
-
+    private Vector3f tint;
     protected Transform transform;
 
 
     public Entity(int max_animations, Transform transform) {
         this.animations = new Animation[max_animations];
-
+        this.tint = new Vector3f(1, 1, 1);
         this.transform = transform;
         this.use_animation = 0;
 
@@ -110,6 +108,7 @@ public abstract class Entity {
         target.mul(world.getWorldMatrix());
 
         shader.bind();
+        shader.setUniform("tint", tint);
         shader.setUniform("sampler", 0);
         shader.setUniform("projection", transform.getProjection(target));
         animations[use_animation].bind(0);
@@ -153,5 +152,9 @@ public abstract class Entity {
             entity.hitbox.correctPosition(hitbox, collision);
             entity.transform.pos.set(entity.hitbox.getCenter().x, entity.hitbox.getCenter().y, 0);
         }
+    }
+
+    public void setTint(Vector3f tint) {
+        this.tint = tint;
     }
 }

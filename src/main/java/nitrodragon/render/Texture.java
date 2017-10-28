@@ -21,8 +21,9 @@ public class Texture {
     public Texture(String filename) {
         BufferedImage bufferedImage;
         try {
-            URI file = getClass().getResource("/textures/" + filename).toURI();
-            bufferedImage = ImageIO.read(new File(file));
+            String toRead = System.getProperty("user.dir") + "/tstiles/src/main/resources" + "/textures/" + filename;
+//            URI file = getClass().getResource(toRead).toURI();
+            bufferedImage = ImageIO.read(new File(toRead));
             width = bufferedImage.getWidth();
             height = bufferedImage.getHeight();
 
@@ -53,7 +54,7 @@ public class Texture {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 
 
-        } catch (IOException |URISyntaxException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
