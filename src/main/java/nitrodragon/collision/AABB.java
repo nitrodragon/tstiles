@@ -3,8 +3,6 @@ package nitrodragon.collision;
 import org.joml.Vector2f;
 
 public class AABB {
-
-
     private Vector2f center, half_extent;
 
     public AABB(Vector2f center, Vector2f half_extent) {
