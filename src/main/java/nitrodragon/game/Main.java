@@ -47,13 +47,17 @@ public class Main {
         double time = Timer.getTime();
         double unprocessed = 0;
 
+        float frame = 0;
+
         while (!window.shouldClose()) {
+            frame += 0.01;
             boolean can_render = false;
             double time_2 = Timer.getTime();
             double passed = time_2 - time;
             unprocessed += passed; // hasn't been processed yet
             frame_time += passed;
             time = time_2;
+            shader.setUniform("time", frame);
 
             while (unprocessed >= frame_cap) {
                 unprocessed -= frame_cap;
@@ -70,20 +74,12 @@ public class Main {
                 window.update();
                 if (frame_time >= 1.0) {
                     frame_time = 0;
-//                    System.out.println("FPS: " + frames);
                     frames = 0;
                 }
             }
 
             if (can_render) {
                 glClear(GL_COLOR_BUFFER_BIT);
-
-                /*shader.bind();
-                shader.setUniform("sampler", 0);
-                shader.setUniform("projection", camera.getProjection().mul(target));
-                model.render();
-                tex.bind(0);*/
-
                 world.render(tiles, shader, camera, window);
 
                 window.swapBuffers();

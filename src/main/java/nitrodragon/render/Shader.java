@@ -56,10 +56,16 @@ public class Shader {
         }
     }
 
+    public void setUniform(String name, float value) {
+        int location = glGetUniformLocation(program, name);
+        if (location != -1)
+            glUniform1f(location, value);
+    }
+
     public void setUniform(String name, int value) {
         int location = glGetUniformLocation(program, name);
         if (location != -1)
-            glUniform1i(location, value);
+            glUniform1f(location, value);
     }
 
     public void setUniform(String name, Vector3f value) {
@@ -93,7 +99,7 @@ public class Shader {
         StringBuilder stringBuilder = new StringBuilder();
         BufferedReader br;
         try {
-            String toRead = System.getProperty("user.dir") + "/tstiles/src/main/resources" + "/shaders/" + filename;
+            String toRead = System.getProperty("user.dir") + "/src/main/resources" + "/shaders/" + filename;
             br = new BufferedReader(new FileReader(new File(toRead)));
             String line;
             while ((line = br.readLine()) != null) {

@@ -31,7 +31,7 @@ public class World {
 
         public World(String world) {
             try {
-                String toRead = System.getProperty("user.dir") + "/tstiles/levels/" + world + "/tiles.png";
+                String toRead = System.getProperty("user.dir") + "/levels/" + world + "/tiles.png";
                 BufferedImage tile_sheet = ImageIO.read(new File(toRead));
 
                 width = tile_sheet.getWidth();
@@ -87,8 +87,8 @@ public class World {
         public Matrix4f getWorldMatrix() { return world; }
 
         public void render(TileRenderer render, Shader shader, Camera cam, Window window) {
-            int posX = ((int)cam.getPosition().x + (window.getWidth()/2)) / (scale * 2);
-            int posY = ((int)cam.getPosition().y - (window.getHeight()/2)) / (scale * 2);
+            int posX = ((int)cam.getPosition().x + (window.getWidth() / 2)) / (scale * 2);
+            int posY = ((int)cam.getPosition().y - (window.getHeight() / 2)) / (scale * 2);
 
             for (int i = 0; i < view; i++) {
                 for (int j = 0; j < view; j++) {

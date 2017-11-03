@@ -21,7 +21,7 @@ public class Texture {
     public Texture(String filename) {
         BufferedImage bufferedImage;
         try {
-            String toRead = System.getProperty("user.dir") + "/tstiles/src/main/resources" + "/textures/" + filename;
+            String toRead = System.getProperty("user.dir") + "/src/main/resources" + "/textures/" + filename;
 //            URI file = getClass().getResource(toRead).toURI();
             bufferedImage = ImageIO.read(new File(toRead));
             width = bufferedImage.getWidth();
