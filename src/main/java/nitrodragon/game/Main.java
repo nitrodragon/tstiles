@@ -1,18 +1,16 @@
 package nitrodragon.game;
 
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
-
 import nitrodragon.entity.Entity;
-import nitrodragon.entity.Player;
-import nitrodragon.entity.Transform;
 import nitrodragon.render.*;
 import nitrodragon.io.*;
 import nitrodragon.world.*;
 import org.lwjgl.opengl.GL;
 
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
+
 public class Main {
-    public Main() {
+    private Main() {
         Window.setCallbacks();
 
         if (!glfwInit()) {
@@ -42,7 +40,6 @@ public class Main {
         double frame_cap = 1.0 / 60.0;
 
         double frame_time = 0;
-        int frames = 0;
 
         double time = Timer.getTime();
         double unprocessed = 0;
@@ -74,7 +71,6 @@ public class Main {
                 window.update();
                 if (frame_time >= 1.0) {
                     frame_time = 0;
-                    frames = 0;
                 }
             }
 
@@ -83,7 +79,6 @@ public class Main {
                 world.render(tiles, shader, camera, window);
 
                 window.swapBuffers();
-                frames++;
             }
 
         }

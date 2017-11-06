@@ -144,7 +144,7 @@ public class World {
         public Tile getTile(int x, int y) {
             try {
                 return Tile.tiles[tiles[x + y * width]];
-            }catch(ArrayIndexOutOfBoundsException e) {
+            } catch(ArrayIndexOutOfBoundsException e) {
                 return null;
             }
         }

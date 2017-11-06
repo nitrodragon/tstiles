@@ -15,14 +15,13 @@ import org.joml.Vector3f;
 public abstract class Entity {
     private static Model model;
     protected AABB hitbox;
-    //private Texture texture;
-    protected Animation[] animations;
+    private Animation[] animations;
     private int use_animation;
-    private Vector3f tint;
-    protected Transform transform;
+    protected Vector3f tint;
+    Transform transform;
 
 
-    public Entity(int max_animations, Transform transform) {
+    Entity(int max_animations, Transform transform) {
         this.animations = new Animation[max_animations];
         this.tint = new Vector3f(1, 1, 1);
         this.transform = transform;
@@ -31,15 +30,15 @@ public abstract class Entity {
         hitbox = new AABB(new Vector2f(transform.pos.x, transform.pos.y), new Vector2f(transform.scale.x, transform.scale.y));
     }
 
-    protected void setAnimation(int index, Animation animation) {
+    void setAnimation(int index, Animation animation) {
         animations[index] = animation;
     }
 
-    public void useAnimation(int index) {
+    void useAnimation(int index) {
         this.use_animation = index;
     }
 
-    public void move(Vector2f direction) {
+    void move(Vector2f direction) {
         transform.pos.add(new Vector3f(direction, 0));
 
         hitbox.getCenter().set(transform.pos.x, transform.pos.y);

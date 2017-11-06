@@ -20,11 +20,11 @@ public class Player extends Entity {
 
     public Player(Transform transform) {
         super(ANIM_SIZE, transform);
-        setAnimation(ANIM_IDLE, new Animation(4, 8, "Ira/Idle"));
-        setAnimation(ANIM_LEFT, new Animation(4, 8, "Ira/WalkLeft"));
-        setAnimation(ANIM_RIGHT, new Animation(4, 8, "Ira/WalkRight"));
-        setAnimation(ANIM_DOWN, new Animation(4, 8, "Ira/WalkDown"));
-        setAnimation(ANIM_UP, new Animation(4, 8, "Ira/WalkUp"));
+        setAnimation(ANIM_IDLE, new Animation(4, 6, "Ira/Idle"));
+        setAnimation(ANIM_LEFT, new Animation(4, 6, "Ira/WalkLeft"));
+        setAnimation(ANIM_RIGHT, new Animation(4, 6, "Ira/WalkRight"));
+        setAnimation(ANIM_DOWN, new Animation(4, 6, "Ira/WalkDown"));
+        setAnimation(ANIM_UP, new Animation(4, 6, "Ira/WalkUp"));
     }
 
     @Override
@@ -46,9 +46,11 @@ public class Player extends Entity {
             movement.add(0, -speed * delta);
             anim = 4;
         }
-        if (!window.getInput().isKeyDown(GLFW_KEY_LEFT) && !window.getInput().isKeyDown(GLFW_KEY_RIGHT) && !window.getInput().isKeyDown(GLFW_KEY_UP) && !window.getInput().isKeyDown(GLFW_KEY_DOWN)) {
+        if (!window.getInput().isKeyDown(GLFW_KEY_LEFT) &&
+                !window.getInput().isKeyDown(GLFW_KEY_RIGHT) &&
+                !window.getInput().isKeyDown(GLFW_KEY_UP) &&
+                !window.getInput().isKeyDown(GLFW_KEY_DOWN))
             anim = 0;
-        }
         move(movement);
         System.out.println(anim);
 

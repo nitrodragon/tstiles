@@ -14,7 +14,7 @@ public class TileRenderer {
     private Model model;
 
     public TileRenderer() {
-        tile_textures = new HashMap<String, Texture>();
+        tile_textures = new HashMap<>();
         float[] vertices = new float[] {
                 -1f, 1f,  0,
                  1f, 1f,  0,
